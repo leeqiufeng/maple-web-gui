@@ -9,7 +9,7 @@
     </ng-template>
   </div>
   <div nz-col nzFlex="auto" style="text-align:right;">
-    <button nz-button nzType="primary">新增</button>
+    <button nz-button nzType="primary" (click)="openAddWin()">新增</button>
   </div>
 </div>
 <div nz-row>
@@ -38,7 +38,7 @@
           <td>{{ item.minimumQuantity }}~{{ item.maximumQuantity }}</td>
           <td>{{ item.chance | dropChance }}</td>
           <td nzAlign="center">
-            <a>编辑</a>
+            <a (click)="openModifyWin(item.id)">编辑</a>
             <nz-divider nzType="vertical"></nz-divider>
             <a (click)="onDelete(item.id)">删除</a>
           </td>

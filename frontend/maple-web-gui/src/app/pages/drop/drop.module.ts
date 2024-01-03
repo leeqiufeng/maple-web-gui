@@ -6,13 +6,15 @@ import { GlobalDropListComponent } from './global-drop-list/global-drop-list.com
 import { MonsterDropListComponent } from './monster-drop-list/monster-drop-list.component';
 import { ReactorDropListComponent } from './reactor-drop-list/reactor-drop-list.component';
 import { SharedModule } from '../../shared/shared.module';
+import { MonsterDropModifyComponent } from './monster-drop-list/monster-drop-modify/monster-drop-modify.component';
 
 
 @NgModule({
   declarations: [
     GlobalDropListComponent,
     MonsterDropListComponent,
-    ReactorDropListComponent
+    ReactorDropListComponent,
+    MonsterDropModifyComponent
   ],
   imports: [
     CommonModule,    
