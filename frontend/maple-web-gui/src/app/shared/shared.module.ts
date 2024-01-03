@@ -13,7 +13,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { DropChancePipe } from './pipes/drop-chance.pipe';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 const NG_ANTD_MOD = [
   IconsProviderModule,
@@ -27,7 +28,8 @@ const NG_ANTD_MOD = [
   NzTypographyModule,
   NzButtonModule,
   NzInputModule,
-  NzModalModule
+  NzModalModule,
+  NzFormModule
 ];
 
 @NgModule({
@@ -35,11 +37,13 @@ const NG_ANTD_MOD = [
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ...NG_ANTD_MOD
   ],
   exports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ...NG_ANTD_MOD,
     DropChancePipe
   ]
