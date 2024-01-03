@@ -1,0 +1,13 @@
+:host {
+  ::ng-deep .ant-space-item {
+    width: 100%;
+  }
+
+  nz-space {
+    width: 100%;
+
+    nz-table {
+      width: 100%;
+    }
+  }
+}

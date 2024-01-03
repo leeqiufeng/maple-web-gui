@@ -1,0 +1,43 @@
+<div nz-row style="margin-bottom:10px;">
+  <div nz-col>
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input type="text" nz-input [(ngModel)]="$params.key" placeholder="请输入物品ID/物品名称/备注" style="width:220px;" />
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button nz-button nzType="primary" nzSearch (click)="list()"><span nz-icon nzType="search"></span></button>
+    </ng-template>
+  </div>
+  <div nz-col nzFlex="auto" style="text-align:right;">
+    <button nz-button nzType="primary">新增</button>
+  </div>
+</div>
+<div nz-row>
+  <nz-table [nzData]="data" [nzLoading]="loading" nzBordered nzHideOnSinglePage (nzPageIndexChange)="onPageIndexChange($event)">
+    <thead>
+      <tr>
+        <th nzWidth="50px">ID</th>
+        <th nzWidth="100px">物品ID</th>
+        <th>物品名称</th>
+        <th nzWidth="100px">掉落数量</th>
+        <th nzWidth="100px">掉落几率</th>
+        <th>备注</th>
+        <th nzWidth="120px">操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data">
+        <td>{{ item.id }}</td>
+        <td>{{ item.itemId }}</td>
+        <td>{{ item.itemName || '-' }}</td>
+        <td>{{ item.minimumQuantity }}~{{ item.maximumQuantity }}</td>
+        <td>{{ item.chance | dropChance }}</td>
+        <td>{{ item.comments }}</td>
+        <td nzAlign="center">
+          <a>编辑</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="onDelete(item.id)">删除</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

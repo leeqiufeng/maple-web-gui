@@ -1,0 +1,53 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a>
+        <h1>MapleFamily Web Gui</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzTitle="Dashboard" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/welcome">Welcome</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="物品掉落" nzIcon="gift">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/drop/global">全局掉落</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/drop/monster">怪物掉落</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/drop/reactor">反应堆掉落</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="商店管理" nzIcon="shop">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/shop/list">商店列表</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
