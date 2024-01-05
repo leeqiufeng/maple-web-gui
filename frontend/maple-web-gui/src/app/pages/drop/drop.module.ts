@@ -7,6 +7,8 @@ import { MonsterDropListComponent } from './monster-drop-list/monster-drop-list.
 import { ReactorDropListComponent } from './reactor-drop-list/reactor-drop-list.component';
 import { SharedModule } from '../../shared/shared.module';
 import { MonsterDropModifyComponent } from './monster-drop-list/monster-drop-modify/monster-drop-modify.component';
+import { ItemSelectorComponent } from './item-selector/item-selector.component';
+import { ItemDropDetailComponent } from './item-drop-detail/item-drop-detail.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { MonsterDropModifyComponent } from './monster-drop-list/monster-drop-mod
     GlobalDropListComponent,
     MonsterDropListComponent,
     ReactorDropListComponent,
-    MonsterDropModifyComponent
+    MonsterDropModifyComponent,
+    ItemSelectorComponent,
+    ItemDropDetailComponent
   ],
   imports: [
     CommonModule,    

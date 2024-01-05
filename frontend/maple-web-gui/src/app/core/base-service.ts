@@ -1,6 +1,7 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpEvent, HttpHeaders } from "@angular/common/http";
 import { InjectionToken } from "@angular/core";
 import { NzSafeAny } from "ng-zorro-antd/core/types";
+import { Observable } from "rxjs";
 
 export const BASE_PATH = new InjectionToken<string>('basePath');
 
@@ -13,7 +14,7 @@ export class BaseService {
     this.basePath = _basePath;
   }
 
-  protected POST<T extends NzSafeAny>(action: string, data?: NzSafeAny, observe: any = 'body', reportProgress: boolean = false) {
+  protected POST<T extends any>(action: string, data?: NzSafeAny, observe: any = 'body', reportProgress: boolean = false) {
     let headers = new HttpHeaders();
 
     const httpHeaderAcceptSelected: string | undefined = undefined;
@@ -41,7 +42,7 @@ export class BaseService {
     );
   }
 
-  protected GET<T extends NzSafeAny>(action: string, data?: NzSafeAny, observe: any = 'body', reportProgress: boolean = false) {
+  protected GET<T extends any>(action: string, data?: NzSafeAny, observe: any = 'body', reportProgress: boolean = false) {
     let headers = new HttpHeaders();
 
     const httpHeaderAcceptSelected: string | undefined = undefined;

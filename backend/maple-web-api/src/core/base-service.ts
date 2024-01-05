@@ -15,6 +15,20 @@ export abstract class BaseService<T extends SelfBaseEntity, K extends BaseQueryP
    */
   public abstract buildWhereOpts<T>(params: K): FindOptionsWhere<T>;
 
+  public fetchOne(id: number): Promise<T> {
+    return new Promise<T>((resolve, reject) => {
+      let params = { id: id };
+      this.repository.findOneBy(params as FindOptionsWhere<T>)
+        .then(ret => {
+          if (ret) {
+            resolve(ret);
+          } else {
+            reject(new HttpException(`未找到指定数据`, HttpStatus.NOT_FOUND));
+          }
+        });
+    });
+  }
+
   public fetch(params: K): Promise<BaseListResult<T>> {
     return new Promise<BaseListResult<T>>((resolve, reject) => {
       let condition = this.buildWhereOpts(params);

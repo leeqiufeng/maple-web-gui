@@ -15,6 +15,9 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
 
 const NG_ANTD_MOD = [
   IconsProviderModule,
@@ -29,7 +32,10 @@ const NG_ANTD_MOD = [
   NzButtonModule,
   NzInputModule,
   NzModalModule,
-  NzFormModule
+  NzFormModule,
+  NzInputNumberModule,
+  NzSwitchModule,
+  NzRadioModule
 ];
 
 @NgModule({

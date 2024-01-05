@@ -1,32 +1,53 @@
-<form nz-form [formGroup]="formGroup">
+<form nz-form [formGroup]="validateForm">
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" nzLabelAlign="left">掉落目标</nz-form-label>
-    <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-      <input nz-input />
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="dropperId" nzLabelAlign="left">掉落目标</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <input nz-input formControlName="dropperId" />
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" nzLabelAlign="left">掉落物品</nz-form-label>
-    <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-      <input nz-input />
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-space nzAlign="center">
+        <input *nzSpaceItem nz-input formControlName="itemId" style="width:100px;" />
+        <ng-container *ngIf="currentObj">
+          <label *nzSpaceItem>{{ currentObj.itemName || "未命名" }}</label>
+        </ng-container>
+        <button nz-button *nzSpaceItem nzType="primary" (click)="openSelector()">选择</button>
+      </nz-space>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" nzLabelAlign="left">最小掉落数量</nz-form-label>
-    <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-      <input nz-input />
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="minimumQuantity" nzLabelAlign="left">最小掉落数量</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-input-number [nzMin]="1" [nzMax]="999" [nzStep]="1" formControlName="minimumQuantity">
+      </nz-input-number>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" nzLabelAlign="left">最大掉落数量</nz-form-label>
-    <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-      <input nz-input />
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="maximumQuantity" nzLabelAlign="left">最大掉落数量</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="请输入正确的任务ID">
+      <nz-input-number [nzMin]="1" [nzMax]="999" [nzStep]="1" formControlName="maximumQuantity">
+      </nz-input-number>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email" nzLabelAlign="left">掉落几率</nz-form-label>
-    <nz-form-control [nzSm]="16" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-      <input nz-input />
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="chance" nzLabelAlign="left">掉落几率</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-input-number [nzMin]="0.01" [nzMax]="100" [nzStep]="0.01" formControlName="chance"
+        [nzFormatter]="formatterPercent" [nzParser]="parserPercent">
+      </nz-input-number>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="chance" nzLabelAlign="left">是否任务道具</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <nz-space nzAlign="center">
+        <nz-switch *nzSpaceItem [(ngModel)]="isQuest" nzCheckedChildren="是" nzUnCheckedChildren="否"
+          (ngModelChange)="onIsQuestModelChange($event)" [ngModelOptions]="{standalone: true}"></nz-switch>
+        <label *nzSpaceItem>任务ID: </label>
+        <input *nzSpaceItem nz-input formControlName="questId" />
+      </nz-space>
     </nz-form-control>
   </nz-form-item>
 </form>

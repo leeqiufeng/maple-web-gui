@@ -4,8 +4,9 @@ import { BaseQueryParams } from 'src/app/core/base-query-params';
 import { BaseTable } from 'src/app/core/base-table';
 import { MonsterDropData } from 'src/app/core/entities';
 import { finalize, takeUntil } from 'rxjs';
-import { MonsterDropService } from '../services/monster-drop.service';
 import { MonsterDropModifyComponent } from './monster-drop-modify/monster-drop-modify.component';
+import { MonsterDropService } from 'src/app/services/monster-drop.service';
+import { ItemDropDetailComponent } from '../item-drop-detail/item-drop-detail.component';
 
 @Component({
   selector: 'app-monster-drop-list',
@@ -47,7 +48,23 @@ export class MonsterDropListComponent extends BaseTable<MonsterDropData, BaseQue
   public openModifyWin(id: number) {
     this.modal.create({
       nzTitle: `编辑掉落`,
-      nzContent: MonsterDropModifyComponent
+      nzContent: MonsterDropModifyComponent,
+      nzComponentParams: {
+        currentId: id
+      }
+    });
+  }
+
+  public openDetail(type: number, id: number) {
+    this.modal.create({
+      nzTitle: `掉落详情`,
+      nzContent: ItemDropDetailComponent,
+      nzComponentParams: {
+        checkType: type,
+        targetId: id
+      },
+      nzWidth: 1000,
+      nzFooter: null
     });
   }
 }
