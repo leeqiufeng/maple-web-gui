@@ -1,0 +1,48 @@
+<nz-space nzDirection="vertical">
+  <div *nzSpaceItem nz-space>
+    <nz-radio-group *nzSpaceItem [(ngModel)]="itemType" nzButtonStyle="solid">
+      <label nz-radio-button [nzValue]="1">装备</label>
+      <label nz-radio-button [nzValue]="2">消耗</label>
+      <label nz-radio-button [nzValue]="3">其他</label>
+    </nz-radio-group>
+    <nz-input-group *nzSpaceItem nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input type="text" nz-input [(ngModel)]="$params.key" placeholder="请输入物品ID/物品名称" style="width:220px;"
+        (keyup.enter)="list()" />
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button nz-button nzType="primary" nzSearch (click)="list()"><span nz-icon nzType="search"></span></button>
+    </ng-template>
+  </div>
+  <div *nzSpaceItem nz-row>
+    <nz-space nzDirection="vertical" nzSize="middle">
+      <nz-table *nzSpaceItem #hostTable [nzData]="data" [nzTotal]="total" [nzLoading]="loading" nzSize="middle"
+        nzBordered nzShowPagination="false">
+        <thead>
+          <tr>
+            <th nzWidth="50px">ID</th>
+            <th nzWidth="100px">道具ID</th>
+            <th>道具名称</th>
+            <th nzWidth="100px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of hostTable.data">
+            <td>{{ item.id }}</td>
+            <td>{{ item.itemId }}</td>
+            <td>{{ item.itemName || '未命名' }}</td>
+            <td nzAlign="center">
+              <a (click)="onSelected(item)">选择</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <div *nzSpaceItem style="text-align:right;">
+        <nz-pagination [nzShowTotal]="rangeTemplate" [nzTotal]="total" [(nzPageIndex)]="pageIndex"
+          [(nzPageSize)]="pageSize" (nzPageIndexChange)="onPageIndexChange($event)"></nz-pagination>
+        <ng-template #rangeTemplate let-range="range" let-total>
+          当前 {{ range[0] }}-{{ range[1] }} , 共 {{ total }} 条数据
+        </ng-template>
+      </div>
+    </nz-space>
+  </div>
+</nz-space>

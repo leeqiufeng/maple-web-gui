@@ -1,0 +1,36 @@
+<nz-space nzDirection="vertical" nzSize="middle">
+  <nz-table *nzSpaceItem #hostTable [nzData]="data" [nzTotal]="total" [nzLoading]="loading" nzBordered nzSize="middle"
+    nzShowPagination="false">
+    <thead>
+      <tr>
+        <th nzWidth="50px">ID</th>
+        <th nzWidth="200px">掉落目标</th>
+        <th>掉落物品</th>
+        <th nzWidth="100px">掉落数量</th>
+        <th nzWidth="100px">任务ID</th>
+        <th nzWidth="100px">掉落几率</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of hostTable.data">
+        <td>{{ item.id }}</td>
+        <td>
+          {{ item.dropperName || '未命名' }}[{{ item.dropperId }}]
+        </td>
+        <td>
+          {{ item.itemName || '未命名' }}[{{ item.itemId }}]
+        </td>
+        <td>{{ item.minimumQuantity }}~{{ item.maximumQuantity }}</td>
+        <td>{{ item.questId }}</td>
+        <td>{{ item.chance | dropChance }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <div *nzSpaceItem style="text-align:right;">
+    <nz-pagination [nzShowTotal]="rangeTemplate" [nzTotal]="total" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize"
+      (nzPageIndexChange)="onPageIndexChange($event)"></nz-pagination>
+    <ng-template #rangeTemplate let-range="range" let-total>
+      当前 {{ range[0] }}-{{ range[1] }} , 共 {{ total }} 条数据
+    </ng-template>
+  </div>
+</nz-space>

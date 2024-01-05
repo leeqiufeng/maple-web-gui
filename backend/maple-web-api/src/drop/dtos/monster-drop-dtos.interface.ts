@@ -23,3 +23,8 @@ export interface MonsterDropDto {
 export interface MonsterDropQueryParams extends BaseQueryParams {
   key?: string;
 }
+
+export interface MonsterDropDetailQueryParams extends BaseQueryParams {
+  type: number;
+  id: number;
+}

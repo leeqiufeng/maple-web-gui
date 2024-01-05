@@ -4,7 +4,7 @@ import { finalize, takeUntil } from 'rxjs';
 import { BaseQueryParams } from 'src/app/core/base-query-params';
 import { BaseTable } from '../../../core/base-table';
 import { GlobalDrop } from '../../../core/entities';
-import { GlobalDropService } from '../services/global-drop.service';
+import { GlobalDropService } from '../../../services/global-drop.service';
 
 @Component({
   selector: 'app-global-drop-list',

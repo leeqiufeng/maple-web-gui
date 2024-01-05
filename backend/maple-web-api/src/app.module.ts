@@ -5,6 +5,8 @@ import { DropModule } from './drop/drop.module';
 import { MonsterDropData } from './entities/monster-drop-data.entity';
 import { GlobalDrop } from './entities/global-drop.entity';
 import { ReactorDropData } from './entities/reactor-drop-data.entity';
+import { WzModule } from './wz/wz.module';
+import { WzConsume } from './entities/wz-consume.entity';
 
 @Module({
   imports: [
@@ -15,10 +17,11 @@ import { ReactorDropData } from './entities/reactor-drop-data.entity';
       username: 'root',
       password: 'root',
       database: 'cosmic',
-      entities: [GlobalDrop, MonsterDropData, ReactorDropData],
+      entities: [GlobalDrop, MonsterDropData, ReactorDropData, WzConsume],
       synchronize: false,
     }),
-    DropModule
+    DropModule,
+    WzModule
   ]
 })
 export class AppModule {

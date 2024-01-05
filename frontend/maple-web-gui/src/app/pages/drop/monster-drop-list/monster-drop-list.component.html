@@ -14,7 +14,7 @@
 </div>
 <div nz-row>
   <nz-space nzDirection="vertical" nzAlign="center" nzSize="middle">
-    <nz-table *nzSpaceItem #hostTable [nzData]="data" [nzTotal]="total" [nzLoading]="loading" nzBordered
+    <nz-table *nzSpaceItem #hostTable [nzData]="data" [nzTotal]="total" [nzLoading]="loading" nzBordered nzSize="middle"
       nzShowPagination="false">
       <thead>
         <tr>
@@ -22,6 +22,7 @@
           <th nzWidth="200px">掉落目标</th>
           <th>掉落物品</th>
           <th nzWidth="100px">掉落数量</th>
+          <th nzWidth="100px">任务ID</th>
           <th nzWidth="100px">掉落几率</th>
           <th nzWidth="120px">操作</th>
         </tr>
@@ -30,12 +31,13 @@
         <tr *ngFor="let item of hostTable.data">
           <td>{{ item.id }}</td>
           <td>
-            <a>{{ item.dropperName || '未命名' }}[{{ item.dropperId }}]</a>
+            <a (click)="openDetail(0,item.dropperId)">{{ item.dropperName || '未命名' }}[{{ item.dropperId }}]</a>
           </td>
           <td>
-            <a>{{ item.itemName || '未命名' }}[{{ item.itemId }}]</a>
+            <a (click)="openDetail(1,item.itemId)">{{ item.itemName || '未命名' }}[{{ item.itemId }}]</a>
           </td>
           <td>{{ item.minimumQuantity }}~{{ item.maximumQuantity }}</td>
+          <td>{{ item.questId }}</td>
           <td>{{ item.chance | dropChance }}</td>
           <td nzAlign="center">
             <a (click)="openModifyWin(item.id)">编辑</a>
